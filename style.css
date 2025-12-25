@@ -74,22 +74,27 @@ body {
   pointer-events: none;
 }
 
+/* כותרת – כסף אפור מיוחד */
 .hero h1 {
   position: relative;
   display: inline-block;
   padding: 18px 28px;
+
+  /* כסף פרימיום */
   background: linear-gradient(
-    45deg,
-    #ff0000,
-    #ff7f00,
-    #ffff00,
-    #4b0082,
-    #8f00ff
+    135deg,
+    #f4f4f4,
+    #d1d1d1,
+    #ffffff,
+    #b8b8b8,
+    #e0e0e0
   );
+
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
+  -webkit-text-fill-color: transparent;
   color: transparent;
+
   z-index: 1; /* מעל הזוהר */
 }
 
@@ -752,24 +757,35 @@ footer {
   }
 }
 
+/* =====================
+   HERO TITLE – כסף אפור עם זוהר עדין
+===================== */
 .hero h1 {
   position: relative;
   display: inline-block;
   padding: 18px 28px;
+  z-index: 5;
 
-  /* צבעים קבועים בכותרת – כל הצבעים ביחד */
+  /* fallback בטוח */
+  color: #d9d9d9;
+
+  /* כסף אפור פרימיום */
   background: linear-gradient(
-    45deg,
-    #ff0000,
-    #ff7f00,
-    #ffff00,
-    #4b0082,
-    #8f00ff
+    135deg,
+    #f2f2f2,
+    #cfcfcf,
+    #ffffff,
+    #b8b8b8,
+    #e0e0e0
   );
+
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
-  color: transparent;
+  -webkit-text-fill-color: transparent;
+
+  /* זוהר עדין */
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.35),
+    0 0 14px rgba(200, 200, 200, 0.25);
 }
 
 .hero p.hero-sub {
