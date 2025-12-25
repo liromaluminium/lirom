@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>לירום אלומיניום וזכוכית בע"מ</title>
+    <link rel="icon" type="image/jpeg" href="images/photo1.jpg" />
+    <style>
+      body {
+        font-family: "Heebo", Arial, sans-serif;
+        background: linear-gradient(135deg, #1a0f2f, #3b136f);
+        color: #fff;
+        margin: 0;
+        padding: 0;
+      }
+
+      main {
+        max-width: 900px;
+        margin: 60px auto;
+        padding: 30px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 2.2rem;
+        margin-bottom: 25px;
+        background: linear-gradient(45deg, #a855f7, #38bdf8, #facc15);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        margin-top: 25px;
+        margin-bottom: 10px;
+        color: #00d9ff;
+      }
+
+      p {
+        line-height: 1.6;
+        margin-bottom: 15px;
+        color: #e0e0e0;
+      }
+
+      ul {
+        margin-left: 20px;
+        margin-bottom: 15px;
+      }
+
+      li {
+        margin-bottom: 10px;
+      }
+
+      .back-button {
+        display: block;
+        width: 160px;
+        margin: 30px auto 0;
+        padding: 12px 20px;
+        text-align: center;
+        background: linear-gradient(45deg, #a855f7, #38bdf8, #facc15);
+        color: #fff;
+        text-decoration: none;
+        border-radius: 12px;
+        font-weight: bold;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .back-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 25px rgba(168, 85, 247, 0.5),
+          0 0 40px rgba(56, 189, 248, 0.3) inset;
+      }
+
+      /* כפתורים צפים קטנים */
+      .floating-icons {
+        position: fixed;
+        bottom: 25px;
+        left: 25px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        z-index: 9999;
+      }
+
+      .floating-icons a {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s;
+        background: #fff;
+      }
+
+      .floating-icons a:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+      }
+
+      .floating-icons a img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      @media (max-width: 768px) {
+        main {
+          margin: 40px 15px;
+          padding: 20px;
+        }
+
+        h1 {
+          font-size: 1.8rem;
+        }
+
+        h2 {
+          font-size: 1.3rem;
+        }
+
+        .floating-icons a {
+          width: 35px;
+          height: 35px;
+        }
+      }
+
+      /* =====================
+   QUICK CALL BUTTON
+===================== */
+      .quick-call-btn {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        padding: 15px 20px;
+        background: linear-gradient(135deg, #7c3aed, #38bdf8, #facc15);
+        background-size: 200% 200%;
+        color: #fff;
+        font-size: 1rem;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-radius: 30px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+        z-index: 10000;
+        transition: transform 0.3s, box-shadow 0.3s,
+          background-position 3s ease-in-out;
+        text-decoration: none;
+        animation: gradientMove 4s ease infinite;
+        white-space: nowrap;
+      }
+
+      .quick-call-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 10px 30px rgba(124, 58, 237, 0.6),
+          0 0 20px rgba(56, 189, 248, 0.6);
+        background-position: 100% 0%;
+      }
+
+      @keyframes gradientMove {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ---------- כפתור חיוג מהיר פרימיום ---------- -->
+    <a href="tel:0539507644" class="quick-call-btn" title="לחצו לחיוג מהיר">
+      📞 לחצו לחיוג מהיר 0539507644
+    </a>
+
+    <main>
+      <h1>מדיניות פרטיות</h1>
+
+      <p>
+        אנו בלירום אלומיניום וזכוכית בע"מ מחויבים להגן על פרטיות המשתמשים שלנו.
+        דף זה מסביר כיצד אנו אוספים, משתמשים ושומרים מידע.
+      </p>
+
+      <h2>איסוף מידע</h2>
+      <p>במהלך השימוש באתר אנו עשויים לאסוף:</p>
+      <ul>
+        <li>
+          פרטים שמספק המשתמש, כגון שם, כתובת אימייל או טלפון, בעת שליחת טפסים.
+        </li>
+        <li>מידע על שימוש באתר, כולל עמודים שנצפו וזמן שהייה.</li>
+        <li>מידע טכני כמו כתובת IP ודפדפן.</li>
+      </ul>
+
+      <h2>שימוש במידע</h2>
+      <p>המידע נאסף כדי:</p>
+      <ul>
+        <li>לשפר את חוויית המשתמש באתר.</li>
+        <li>לתקשר עם המשתמשים לגבי שאלות, הזמנות או עדכונים.</li>
+        <li>לנתח ולשפר את האתר והשירותים שלנו.</li>
+      </ul>
+
+      <h2>שיתוף מידע</h2>
+      <p>
+        איננו מוכרים או משכירים מידע אישי לצדדים שלישיים. מידע יכול להיות משותף
+        רק עם ספקים המסייעים לנו בהפעלת האתר ושירותיו, תחת התחייבות לשמירה על
+        פרטיות.
+      </p>
+
+      <h2>אבטחת מידע</h2>
+      <p>
+        אנו משתמשים באמצעים טכנולוגיים ונהלים פנימיים כדי להגן על המידע שנאסף
+        מפני גישה בלתי מורשית, שינוי או חשיפה לא רצויה.
+      </p>
+
+      <h2>שינויים במדיניות הפרטיות</h2>
+      <p>
+        המדיניות יכולה להשתנות מעת לעת. אנו ממליצים לבדוק דף זה מעת לעת כדי
+        להתעדכן בשינויים.
+      </p>
+
+      <h2>יצירת קשר</h2>
+      <p>
+        לשאלות או בקשות הנוגעות למדיניות הפרטיות, ניתן ליצור איתנו קשר דרך האתר
+        או בוואטסאפ.
+      </p>
+
+      <a href="javascript:history.back()" class="back-button">חזור אחורה</a>
+    </main>
+
+    <!-- כפתורים צפים קטנים -->
+    <div class="floating-icons">
+      <a href="https://wa.me/972539507644" target="_blank" title="וואטסאפ">
+        <img src="images/what.jpg" alt="WhatsApp" />
+      </a>
+      <a
+        href="https://www.facebook.com/lyrwm.lwmynywm.wzkwkyt?locale=he_IL"
+        target="_blank"
+        title="פייסבוק"
+      >
+        <img src="images/facebook.jpg" alt="Facebook" />
+      </a>
+      <a
+        href="https://www.instagram.com/a.b.taluminum"
+        target="_blank"
+        class="social-btn instagram"
+        title="אינסטגרם"
+      >
+        <img src="images/instaa.jpg" alt="Instagram" />
+      </a>
+      <a
+        href="https://waze.com/ul?q=המלאכה+6,+אור+יהודה&navigate=yes"
+        target="_blank"
+        title="Waze"
+      >
+        <img src="images/waze.jpg" alt="Waze" />
+      </a>
+    </div>
+  </body>
+</html>

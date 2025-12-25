@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>לירום אלומיניום וזכוכית בע"מ</title>
+    <link rel="icon" type="image/jpeg" href="images/photo1.jpg" />
+    <style>
+      body {
+        font-family: "Heebo", Arial, sans-serif;
+        background: linear-gradient(135deg, #1a0f2f, #3b136f);
+        color: #fff;
+        margin: 0;
+        padding: 0;
+      }
+
+      main {
+        max-width: 900px;
+        margin: 60px auto;
+        padding: 30px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        text-align: center;
+      }
+
+      h1,
+      h2 {
+        background: linear-gradient(45deg, #a855f7, #38bdf8, #facc15);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 20px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.6rem;
+      }
+
+      label {
+        display: block;
+        margin: 15px 0 5px;
+        font-weight: 600;
+      }
+
+      .input-field {
+        width: 90%;
+        max-width: 400px;
+        padding: 12px 15px;
+        margin-bottom: 20px;
+        border-radius: 12px;
+        border: 1px solid #38bdf8;
+        font-size: 1rem;
+        text-align: right; /* RTL */
+        outline: none;
+        transition: 0.3s;
+        box-sizing: border-box;
+        background: #1a0f2f; /* רקע אחיד כהה */
+        color: #fff;
+        min-height: 45px;
+      }
+
+      select.input-field {
+        background: #1a0f2f; /* רקע אחיד ל-select */
+      }
+
+      button {
+        padding: 12px 25px;
+        font-size: 1rem;
+        font-weight: bold;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        background: linear-gradient(45deg, #a855f7, #38bdf8, #facc15);
+        color: #fff;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 25px rgba(168, 85, 247, 0.5),
+          0 0 40px rgba(56, 189, 248, 0.3) inset;
+      }
+
+      #result {
+        margin-top: 25px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #00d9ff;
+      }
+
+      .back-button {
+        display: block;
+        width: 160px;
+        margin: 30px auto 0;
+        padding: 12px 20px;
+        text-align: center;
+        background: linear-gradient(45deg, #a855f7, #38bdf8, #facc15);
+        color: #fff;
+        text-decoration: none;
+        border-radius: 12px;
+        font-weight: bold;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .back-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 25px rgba(168, 85, 247, 0.5),
+          0 0 40px rgba(56, 189, 248, 0.3) inset;
+      }
+
+      .floating-icons {
+        position: fixed;
+        bottom: 25px;
+        left: 25px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        z-index: 9999;
+      }
+
+      .floating-icons a {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s;
+        background: #fff;
+      }
+
+      .floating-icons a:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+      }
+
+      .floating-icons a img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      @media (max-width: 768px) {
+        main {
+          margin: 40px 15px;
+          padding: 20px;
+        }
+        h1 {
+          font-size: 1.5rem;
+        }
+        h2 {
+          font-size: 1.3rem;
+        }
+        .input-field,
+        button {
+          width: 100%;
+        }
+        .floating-icons a {
+          width: 35px;
+          height: 35px;
+        }
+      }
+
+      /* =====================
+   QUICK CALL BUTTON
+===================== */
+      .quick-call-btn {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        padding: 15px 20px;
+        background: linear-gradient(135deg, #7c3aed, #38bdf8, #facc15);
+        background-size: 200% 200%;
+        color: #fff;
+        font-size: 1rem;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-radius: 30px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+        z-index: 10000;
+        transition: transform 0.3s, box-shadow 0.3s,
+          background-position 3s ease-in-out;
+        text-decoration: none;
+        animation: gradientMove 4s ease infinite;
+        white-space: nowrap;
+      }
+
+      .quick-call-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 10px 30px rgba(124, 58, 237, 0.6),
+          0 0 20px rgba(56, 189, 248, 0.6);
+        background-position: 100% 0%;
+      }
+
+      @keyframes gradientMove {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ---------- כפתור חיוג מהיר פרימיום ---------- -->
+    <a href="tel:0539507644" class="quick-call-btn" title="לחצו לחיוג מהיר">
+      📞 לחצו לחיוג מהיר 0539507644
+    </a>
+
+    <main>
+      <h1>מחשבון אלומיניום ודלתות</h1>
+      <h2>חשב מחיר לפי מ"ר או יחידות</h2>
+
+      <label for="typeSelect">בחר סוג מוצר :</label>
+      <select id="typeSelect" class="input-field">
+        <option value="1450">חלון בלגי מעוצב החל מ - 1,450 ₪ למ"ר</option>
+        <option value="900">חלון קלאסי דגם 7000 החל מ - 900 ₪ למ"ר</option>
+        <option value="1100">חלון קלאסי דגם 9000 החל מ - 1,100 ₪ למ"ר</option>
+        <option value="3800">דלת בלגית מעוצבת החל - 3,800 ₪ ליחידה</option>
+        <option value="3350">דלת מדגם 2000 קלאסי החל מ - 3,350 ₪ ליחידה</option>
+        <option value="450">רשתות נגד יתושים החל מ - 450 ₪ למ"ר</option>
+      </select>
+
+      <label for="meters">כמה מטרים או יחידות ?</label>
+      <input
+        type="number"
+        id="meters"
+        placeholder="לדוגמה: 40"
+        min="1"
+        class="input-field"
+      />
+
+      <button onclick="calcPrice()">חשב מחיר</button>
+
+      <div id="result">המחיר המשוער :</div>
+
+      <a href="javascript:history.back()" class="back-button">חזור אחורה</a>
+    </main>
+
+    <div class="floating-icons">
+      <a href="https://wa.me/972539507644" target="_blank" title="וואטסאפ"
+        ><img src="images/what.jpg" alt="WhatsApp"
+      /></a>
+      <a
+        href="https://www.facebook.com/lyrwm.lwmynywm.wzkwkyt?locale=he_IL"
+        target="_blank"
+        title="פייסבוק"
+        ><img src="images/facebook.jpg" alt="Facebook"
+      /></a>
+      <a
+        href="https://www.instagram.com/a.b.taluminum"
+        target="_blank"
+        class="social-btn instagram"
+        title="אינסטגרם"
+        ><img src="images/instaa.jpg" alt="Instagram"
+      /></a>
+      <a
+        href="https://waze.com/ul?q=המלאכה+6,+אור+יהודה&navigate=yes"
+        target="_blank"
+        title="Waze"
+        ><img src="images/waze.jpg" alt="Waze"
+      /></a>
+    </div>
+
+    <script>
+      function calcPrice() {
+        const price = parseFloat(document.getElementById("typeSelect").value);
+        const meters = parseFloat(document.getElementById("meters").value);
+        if (isNaN(meters) || meters <= 0) {
+          alert("אנא הכנס מספר תקין של מטרים או יחידות");
+          return;
+        }
+        const total = price * meters;
+        document.getElementById(
+          "result"
+        ).textContent = `המחיר המשוער: ${total.toLocaleString()} ₪`;
+      }
+    </script>
+  </body>
+</html>

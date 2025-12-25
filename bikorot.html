@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ביקורות ודירוג</title>
+    <link rel="icon" type="image/jpeg" href="images/photo1.jpg" />
+    <style>
+      /* =========================
+         GLOBAL RESET + NO HORIZONTAL SCROLL
+      ========================= */
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Heebo", Arial, sans-serif;
+        background: linear-gradient(135deg, #f3f0ff, #dcd6ff);
+        color: #333;
+        min-height: 100vh;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden; /* מנע גלילה אופקית */
+      }
+
+      main {
+        width: 95%;
+        max-width: 700px;
+        margin: 20px auto;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        box-sizing: border-box;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 15px;
+        background: linear-gradient(45deg, #7c3aed, #38bdf8, #facc15);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .back-button {
+        display: inline-block;
+        margin-bottom: 15px;
+        padding: 6px 14px;
+        font-size: 0.85rem;
+        background: linear-gradient(135deg, #7c3aed, #38bdf8, #facc15);
+        color: #fff;
+        text-decoration: none;
+        border-radius: 10px;
+      }
+
+      form {
+        background: rgba(124, 58, 237, 0.05);
+        padding: 15px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        margin: 8px 0 4px;
+        font-weight: 600;
+      }
+
+      input[type="text"],
+      textarea {
+        width: 100%;
+        padding: 6px;
+        font-size: 0.9rem;
+        border-radius: 6px;
+        border: 1px solid #38bdf8;
+        box-sizing: border-box;
+      }
+
+      textarea {
+        min-height: 60px;
+      }
+
+      button {
+        margin-top: 10px;
+        padding: 8px 18px;
+        font-size: 0.9rem;
+        font-weight: bold;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        background: linear-gradient(135deg, #7c3aed, #38bdf8, #facc15);
+        background-size: 200% 200%;
+        animation: gradientMove 4s ease infinite;
+      }
+
+      @keyframes gradientMove {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .stars-input {
+        display: flex;
+        gap: 3px;
+        cursor: pointer;
+        margin-bottom: 10px;
+      }
+
+      .stars-input span {
+        font-size: 1.5rem;
+        color: #ccc;
+        transition: 0.2s;
+      }
+
+      .stars-input span.selected,
+      .stars-input span:hover,
+      .stars-input span.hover {
+        color: gold;
+      }
+
+      .reviews {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .review {
+        background: rgba(255, 255, 255, 0.95);
+        border-left: 5px solid #7c3aed;
+        padding: 12px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      }
+
+      .review strong {
+        display: block;
+        font-size: 1rem;
+        color: #7c3aed;
+        margin-bottom: 5px;
+      }
+
+      .review .stars {
+        display: flex;
+        gap: 3px;
+        margin-bottom: 6px;
+      }
+
+      .review .star {
+        color: gold;
+        font-size: 1.1rem;
+      }
+
+      .review p {
+        margin-top: 5px;
+        font-size: 0.9rem;
+        line-height: 1.4;
+      }
+
+      /* =========================
+         MOBILE ADJUSTMENTS
+      ========================= */
+      @media (max-width: 480px) {
+        html,
+        body {
+          overflow-x: hidden !important; /* מנע גלילה אופקית במובייל */
+          touch-action: pan-y;
+          overscroll-behavior-x: none;
+        }
+
+        main {
+          padding: 15px;
+        }
+
+        h1 {
+          font-size: 1.5rem;
+        }
+
+        .back-button {
+          padding: 5px 12px;
+          font-size: 0.8rem;
+        }
+
+        input[type="text"],
+        textarea {
+          font-size: 0.85rem;
+          padding: 5px;
+        }
+
+        button {
+          font-size: 0.85rem;
+          padding: 6px 12px;
+        }
+
+        .stars-input span {
+          font-size: 1.2rem;
+        }
+
+        .review .star {
+          font-size: 1rem;
+        }
+      }
+
+      /* =====================
+   FLOATING ICONS
+===================== */
+      .floating-icons {
+        position: fixed;
+        bottom: 25px;
+        left: 25px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        z-index: 9999;
+      }
+
+      .floating-icons a {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s;
+        background: #fff;
+      }
+
+      .floating-icons a:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+      }
+
+      .floating-icons a img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>ביקורות ודירוג</h1>
+      <a href="javascript:history.back()" class="back-button">חזור</a>
+
+      <form id="reviewForm">
+        <label for="name">שם:</label>
+        <input type="text" id="name" required />
+
+        <label>שירות:</label>
+        <div class="stars-input" id="serviceStars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+
+        <label>אמינות:</label>
+        <div class="stars-input" id="reliabilityStars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+
+        <label>הבנת הצורך:</label>
+        <div class="stars-input" id="understandingStars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+
+        <label for="comment">ביקורת:</label>
+        <textarea id="comment" rows="2" required></textarea>
+
+        <button type="submit">שלח ביקורת</button>
+      </form>
+
+      <div class="reviews" id="reviewsList"></div>
+    </main>
+
+    <!-- ---------- כפתורים צפים עם תמונות ---------- -->
+    <div class="floating-icons">
+      <a
+        href="https://wa.me/972539507644"
+        target="_blank"
+        class="social-btn whatsapp"
+        title="וואטסאפ"
+      >
+        <img src="images/what.jpg" alt="WhatsApp" />
+      </a>
+      <a
+        href="https://www.facebook.com/lyrwm.lwmynywm.wzkwkyt?locale=he_IL"
+        target="_blank"
+        class="social-btn facebook"
+        title="פייסבוק"
+      >
+        <img src="images/facebook.jpg" alt="Facebook" />
+      </a>
+      <a
+        href="https://www.instagram.com/a.b.taluminum"
+        target="_blank"
+        class="social-btn instagram"
+        title="אינסטגרם"
+      >
+        <img src="images/instaa.jpg" alt="Instagram" />
+      </a>
+      <a
+        href="https://waze.com/ul?q=המלאכה+6,+אור+יהודה&navigate=yes"
+        target="_blank"
+        class="social-btn waze"
+        title="Waze"
+      >
+        <img src="images/waze.jpg" alt="Waze" />
+      </a>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyAU7JUe-EUm1jRDSzmVxTAkRKyyiQrFzNk",
+        authDomain: "lirom-aluminium.firebaseapp.com",
+        projectId: "lirom-aluminium",
+        storageBucket: "lirom-aluminium.appspot.com",
+        messagingSenderId: "303274210714",
+        appId: "1:303274210714:web:b62e7187cdc5f96b577623",
+      };
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+
+      function setupStars(starsDivId) {
+        const container = document.getElementById(starsDivId);
+        let selectedRating = 0;
+        container.querySelectorAll("span").forEach((star, index) => {
+          star.addEventListener("mouseenter", () => {
+            fillStars(container, index + 1, "hover");
+          });
+          star.addEventListener("mouseleave", () => {
+            fillStars(container, selectedRating);
+          });
+          star.addEventListener("click", () => {
+            selectedRating = index + 1;
+            fillStars(container, selectedRating);
+            container.dataset.value = selectedRating;
+          });
+        });
+        container.dataset.value = 0;
+        return container;
+      }
+
+      function fillStars(container, count, className = "selected") {
+        container.querySelectorAll("span").forEach((star, i) => {
+          star.classList.remove("selected", "hover");
+          if (i < count) star.classList.add(className);
+        });
+      }
+
+      const serviceStars = setupStars("serviceStars");
+      const reliabilityStars = setupStars("reliabilityStars");
+      const understandingStars = setupStars("understandingStars");
+
+      function createStars(rating) {
+        let starsHTML = "";
+        for (let i = 1; i <= 5; i++) {
+          starsHTML += `<span class="star">${i <= rating ? "★" : "☆"}</span>`;
+        }
+        return starsHTML;
+      }
+
+      function addReviewToDOM(r) {
+        const div = document.createElement("div");
+        div.classList.add("review");
+        div.innerHTML = `<strong>${r.name}</strong>
+          <div class="stars">שירות: ${createStars(r.service)}</div>
+          <div class="stars">אמינות: ${createStars(r.reliability)}</div>
+          <div class="stars">הבנת הצורך: ${createStars(r.understanding)}</div>
+          <p>${r.comment}</p>`;
+        reviewsList.prepend(div);
+      }
+
+      const reviewsList = document.getElementById("reviewsList");
+
+      db.collection("reviews")
+        .orderBy("timestamp", "desc")
+        .onSnapshot((snapshot) => {
+          reviewsList.innerHTML = "";
+          snapshot.forEach((doc) => addReviewToDOM(doc.data()));
+        });
+
+      document.getElementById("reviewForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const newReview = {
+          name: document.getElementById("name").value,
+          service: parseInt(serviceStars.dataset.value),
+          reliability: parseInt(reliabilityStars.dataset.value),
+          understanding: parseInt(understandingStars.dataset.value),
+          comment: document.getElementById("comment").value,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        };
+        if (
+          newReview.service === 0 ||
+          newReview.reliability === 0 ||
+          newReview.understanding === 0
+        ) {
+          alert("אנא דרג את כל הקטגוריות בכוכבים");
+          return;
+        }
+        db.collection("reviews")
+          .add(newReview)
+          .then(() => document.getElementById("reviewForm").reset())
+          .catch((err) => alert("שגיאה: " + err));
+      });
+    </script>
+  </body>
+</html>

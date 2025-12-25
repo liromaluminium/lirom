@@ -1,0 +1,942 @@
+@charset "utf-8";
+
+/* =====================
+   RESET + BASE
+===================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Heebo", Arial, sans-serif;
+}
+
+body {
+  direction: rtl;
+  color: #f5f3ff;
+  overflow-x: hidden;
+  background: radial-gradient(
+      circle at 20% 30%,
+      rgba(75, 73, 73, 0.9),
+      transparent 40%
+    ),
+    radial-gradient(circle at 80% 70%, rgba(70, 70, 70, 0.5), transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(50, 50, 50, 0.6), transparent 50%),
+    radial-gradient(circle at top, #000000, #1a1a1a 65%);
+  background-blend-mode: overlay, lighten, screen, normal;
+}
+
+/* =====================
+   HERO
+===================== */
+.hero {
+  position: relative; /* חשוב עבור הזוהר */
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: 80px;
+}
+
+/* זוהר עדין מאחורי הכותרת */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.12) 0%,
+    transparent 70%
+  );
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* שכבת אור נוספת */
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px; /* יותר גדול מהשכבה הראשונה */
+  height: 700px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.08) 0%,
+    transparent 80%
+  );
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero h1 {
+  position: relative;
+  display: inline-block;
+  padding: 18px 28px;
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7f00,
+    #ffff00,
+    #4b0082,
+    #8f00ff
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  z-index: 1; /* מעל הזוהר */
+}
+
+.hero p.hero-sub {
+  display: block !important;
+}
+
+/* =====================
+   HEADER / NAVBAR
+===================== */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(76, 29, 149, 0.85),
+    rgba(15, 23, 42, 0.85)
+  );
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(192, 132, 252, 0.25);
+  z-index: 1000;
+}
+
+@media (max-width: 768px) {
+  header {
+    background: transparent !important;
+    border-bottom: none !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+  }
+}
+
+.navbar {
+  max-width: 1200px;
+  margin: auto;
+  padding: 26px 24px; /* ↑ זה מותח למטה ולמעלה */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* מסתיר את כותרת החברה בניווט */
+.navbar > div:not(.nav-toggle-button) {
+  display: none;
+}
+
+/* ניווט */
+.nav-menu {
+  list-style: none;
+  display: flex; /* דסקטופ */
+  gap: 28px;
+}
+
+.nav-menu a {
+  padding: 9px 20px;
+  border-radius: 40px;
+  font-weight: 500;
+  color: #ede9fe;
+  text-shadow: 0 0 5px #ffffff, 0 0 10px #a855f7, 0 0 20px #38bdf8;
+  transition: all 0.35s ease;
+  position: relative;
+}
+
+.nav-menu a::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border-radius: 40px;
+  background: linear-gradient(45deg, #a855f7, #38bdf8, #facc15, #38bdf8);
+  background-size: 300% 300%;
+  filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.35s, transform 0.35s;
+  z-index: -1;
+}
+
+.nav-menu a:hover::before {
+  opacity: 1;
+  transform: scale(1.1);
+  animation: glowGradient 3s ease infinite;
+}
+
+.nav-menu a:hover {
+  color: #ffffff;
+  box-shadow: 0 0 20px #a855f7, 0 0 30px #38bdf8, 0 0 40px #facc15;
+}
+
+@keyframes glowGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* =====================
+   HERO
+===================== */
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: 80px;
+}
+
+.hero h1 {
+  font-size: 4.2rem;
+  font-weight: 900;
+  background: linear-gradient(to right, #f5d0fe, #c084fc, #67e8f9);
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 18px;
+  text-shadow: 0 0 40px rgba(192, 132, 252, 0.35);
+}
+
+.hero p {
+  display: none;
+}
+
+/* =====================
+   SECTIONS
+===================== */
+.section {
+  max-width: 1200px;
+  margin: auto;
+  padding: 120px 20px;
+}
+
+.section h2 {
+  text-align: center;
+  font-size: 2.7rem;
+  margin-bottom: 55px;
+  background: linear-gradient(to right, #c084fc, #67e8f9);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* =====================
+   CARDS
+===================== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+}
+
+.card {
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.03)
+  );
+  padding: 38px;
+  border-radius: 26px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45),
+    inset 0 0 0 1px rgba(192, 132, 252, 0.18);
+  transition: 0.4s;
+}
+
+.card:hover {
+  transform: translateY(-14px);
+  background: linear-gradient(
+    160deg,
+    rgba(168, 85, 247, 0.28),
+    rgba(56, 189, 248, 0.18)
+  );
+}
+
+/* =====================
+   HAMBURGER BUTTON – קובייתי וזוהר
+===================== */
+.nav-toggle-button {
+  display: none;
+  width: 50px;
+  height: 50px;
+  background-color: #7c3aed;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 0 12px #7c3aed, 0 0 25px #a855f7, 0 0 40px #facc15 inset;
+  position: fixed;
+  top: 10px;
+  right: 12px;
+  z-index: 3000;
+  transition: transform 0.2s, box-shadow 0.3s, background-color 0.3s;
+}
+
+.nav-toggle-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 18px #7c3aed, 0 0 30px #a855f7, 0 0 50px #facc15 inset;
+  background-color: #5b21b6;
+}
+
+/* =====================
+   MOBILE NAV – קטן ומדויק
+===================== */
+@media (max-width: 768px) {
+  .nav-toggle-button {
+    display: flex;
+  }
+
+  .nav-menu {
+    display: none; /* סגור כברירת מחדל */
+    flex-direction: column;
+    position: fixed;
+    top: 70px; /* מתחת לכפתור */
+    right: 10px;
+    background: rgba(15, 23, 42, 0.95);
+    width: 180px; /* רוחב קטן יותר */
+    padding: 8px; /* ריווח פנימי קטן */
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.5),
+      0 0 40px rgba(56, 189, 248, 0.3) inset;
+    z-index: 2500;
+  }
+
+  /* כאשר נלחץ הכפתור */
+  .nav-menu.show {
+    display: flex;
+  }
+
+  /* כל פריט ברשימה */
+  .nav-menu li {
+    margin-bottom: 6px; /* ריווח קטן בין הפריטים */
+  }
+
+  .nav-menu li a {
+    display: block;
+    padding: 8px 10px;
+    border-radius: 8px;
+    background: rgba(124, 58, 237, 0.2);
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    box-shadow: 0 0 4px rgba(124, 58, 237, 0.3);
+    font-size: 0.95rem; /* קטן ונוח לקריאה */
+  }
+
+  .nav-menu li a:hover {
+    background: rgba(124, 58, 237, 0.6);
+    transform: translateX(-1px);
+    box-shadow: 0 0 15px #7c3aed, 0 0 25px #a855f7;
+  }
+}
+
+/* הכפתור לא יוצג במחשב */
+.nav-toggle-button {
+  display: none;
+}
+
+/* יוצג רק במובייל */
+@media (max-width: 768px) {
+  .nav-toggle-button {
+    display: flex;
+  }
+}
+
+/* =====================
+   QUICK CALL BUTTON
+===================== */
+.quick-call-btn {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  padding: 15px 20px;
+  background: linear-gradient(135deg, #7c3aed, #38bdf8, #facc15);
+  background-size: 200% 200%;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 30px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+  z-index: 10000;
+  transition: transform 0.3s, box-shadow 0.3s,
+    background-position 3s ease-in-out;
+  text-decoration: none;
+  animation: gradientMove 4s ease infinite;
+  white-space: nowrap;
+}
+
+.quick-call-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.6),
+    0 0 20px rgba(56, 189, 248, 0.6);
+  background-position: 100% 0%;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* =====================
+   FLOATING ICONS
+===================== */
+.floating-icons {
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 9999;
+}
+
+.floating-icons a {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  background: #fff;
+}
+
+.floating-icons a:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+}
+
+.floating-icons a img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* =====================
+   SERVICE CARDS – PREMIUM UPGRADE
+===================== */
+.services-section {
+  padding: 100px 20px;
+  background: radial-gradient(circle at top, #0c0015, #2c0a3f 80%);
+  text-align: center;
+}
+
+.services-section h2 {
+  font-size: 3rem;
+  margin-bottom: 70px;
+  color: #e0c0ff;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-shadow: 0 0 15px rgba(138, 43, 226, 0.5),
+    0 0 25px rgba(138, 43, 226, 0.3);
+}
+
+/* Cards wrapper */
+.services-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+
+/* Card */
+.service-card {
+  position: relative;
+  background: linear-gradient(145deg, #4b0082, #6a0dad);
+  padding: 40px 30px;
+  border-radius: 28px;
+  width: 320px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+/* Glass shine effect */
+.service-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.15),
+    transparent 75%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+.service-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 25px 55px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Glow accent */
+.service-card::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(138, 43, 226, 0.2), transparent 70%);
+  filter: blur(80px);
+  z-index: 0;
+}
+
+/* Icon */
+.service-card .icon {
+  font-size: 3.5rem;
+  margin-bottom: 25px;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2), 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Title */
+.service-card h3 {
+  font-size: 1.7rem;
+  margin-bottom: 16px;
+  color: #fff;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5), 0 0 8px rgba(138, 43, 226, 0.6);
+}
+
+/* Text */
+.service-card p {
+  font-size: 1.05rem;
+  color: #eae6ff;
+  line-height: 1.8;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+/* =====================
+   CONTACT SECTION
+===================== */
+.contact-section {
+  background: linear-gradient(135deg, #2c0a3f, #622282);
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.contact-container {
+  background: linear-gradient(145deg, #1a0a2f, #3b0f4f);
+  padding: 40px 30px;
+  border-radius: 25px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  color: #e0d4ff;
+}
+
+.contact-container h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #ffeb3b; /* כותרת בולטת */
+  font-weight: bold;
+  background: linear-gradient(90deg, #a95fff, #fcfbff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.contact-container p {
+  font-size: 1rem;
+  color: #dcd6ff;
+  margin: 10px 0;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 12px;
+  border: 1px solid #6a0dad;
+  border-radius: 12px;
+  font-size: 1rem;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #fff;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #ccc;
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.contact-form button {
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #6a0dad, #ffffff);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+.contact-form button:hover {
+  background: linear-gradient(135deg, #ffffff, #6a0dad);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7);
+}
+
+/* =====================
+   ABOUT SECTION – מי אנחנו
+===================== */
+.about-section {
+  max-width: 800px; /* רוחב מקסימלי */
+  margin: 20px auto; /* צמצום margin עליון */
+  background: rgba(255, 255, 255, 0.1); /* רקע שקוף עם גוון */
+  backdrop-filter: blur(10px); /* טשטוש הרקע */
+  border-radius: 20px; /* קצוות מעוגלים */
+  padding: 40px 30px; /* רווח פנימי */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* צל קל */
+  text-align: center; /* יישור טקסט */
+  scroll-margin-top: 120px; /* מאפשר גלילה יפה מתחת לheader */
+}
+
+.about-section h2 {
+  font-size: 2.5rem;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.about-section p {
+  font-size: 1.1rem;
+  color: #f0f0f0;
+  line-height: 1.7;
+}
+
+/* התאמות למובייל */
+@media (max-width: 768px) {
+  .about-section {
+    margin: 15px auto;
+    padding: 25px 20px;
+    scroll-margin-top: 90px; /* מתאים לניווט במובייל */
+  }
+
+  .about-section h2 {
+    font-size: 2rem;
+  }
+
+  .about-section p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+}
+
+/* =====================
+   FOOTER – פרימיום
+===================== */
+footer {
+  width: 100%;
+  background: #000000; /* פוטר בצבע שחור */
+  color: #ffffff; /* טקסט לבן */
+  font-weight: bold;
+  text-align: center;
+  padding: 20px 0; /* גובה הפוטר */
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 1000;
+}
+
+/* אנימציית גרדיאנט */
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    border-bottom: none; /* מסיר את הפס העליון */
+    background: linear-gradient(
+      to right,
+      rgba(76, 29, 149, 0.85),
+      rgba(76, 29, 149, 0.85)
+    ); /* תשמור את הרקע */
+  }
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.4rem; /* גודל יפה ומאוזן */
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  .hero {
+    padding-top: 120px; /* נותן אוויר מתחת לניווט */
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    align-items: flex-start; /* במקום center */
+    padding-top: 90px; /* שולט בגובה */
+  }
+}
+
+.hero h1 {
+  position: relative;
+  display: inline-block;
+  padding: 18px 28px;
+
+  /* צבעים קבועים בכותרת – כל הצבעים ביחד */
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7f00,
+    #ffff00,
+    #4b0082,
+    #8f00ff
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero p.hero-sub {
+  display: block !important;
+}
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* =========================
+   MOBILE ADJUSTMENTS
+========================= */
+@media (max-width: 768px) {
+  .hero-sub {
+    font-size: 1rem;
+    line-height: 1.7;
+    padding: 14px 16px;
+    margin-top: 14px;
+  }
+}
+
+/* =========================
+   MOBILE ADJUSTMENTS – צמצום רווחים מקסימלי
+========================= */
+@media (max-width: 768px) {
+  /* צמצום padding בסקשנים */
+  .section {
+    padding: 40px 16px;
+  }
+
+  .about-section {
+    margin: 20px auto;
+    padding: 15px 16px;
+  }
+
+  .hero {
+    padding-top: 70px; /* מצמצם את החלק העליון */
+  }
+
+  /* =====================
+     HEADER למובייל – שקוף
+  ====================== */
+  header {
+    background: transparent !important;
+    border-bottom: none !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+  }
+
+  /* =====================
+     HAMBURGER BUTTON – מופיע במובייל
+  ====================== */
+  .nav-toggle-button {
+    display: flex; /* מוצג */
+  }
+
+  /* =====================
+     QUICK CALL BUTTON – נשאר זוהר
+  ====================== */
+  .quick-call-btn {
+    display: flex; /* מוצג */
+    /* משאיר את כל הצבעים והצל כפי שהגדרת קודם */
+    background: linear-gradient(135deg, #7c3aed, #38bdf8, #facc15);
+    background-size: 200% 200%;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+    color: #fff;
+    font-weight: bold;
+    padding: 15px 20px;
+    border-radius: 30px;
+    transition: transform 0.3s, box-shadow 0.3s,
+      background-position 3s ease-in-out;
+    animation: gradientMove 4s ease infinite;
+  }
+}
+
+/* BLUR OPTIMIZATION */
+.nav-menu a::before,
+.hero h1::before,
+.hero h1::after {
+  filter: blur(12px);
+}
+
+#cookie-consent {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 5, 20, 0.65);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 9999;
+}
+
+.cookie-box {
+  background: linear-gradient(135deg, #120720, #2a0f45);
+  color: #fff;
+  width: min(95%, 420px);
+  margin: 20px;
+  border-radius: 18px;
+  padding: 22px;
+  display: flex;
+  gap: 15px;
+  box-shadow: 0 20px 50px rgba(168, 85, 247, 0.45);
+}
+.cookie-icon {
+  font-size: 2.2rem;
+}
+.cookie-text h3 {
+  margin: 0 0 6px;
+  font-size: 1.2rem;
+  color: #c084fc;
+}
+.cookie-text p {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  opacity: 0.9;
+}
+.cookie-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+.cookie-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+.cookie-btn.accept {
+  background: linear-gradient(90deg, #a855f7, #38bdf8);
+  color: #000;
+}
+.cookie-btn.reject {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+#cookie-consent.show {
+  display: flex;
+  opacity: 1;
+  transition: opacity 0.35s ease;
+}
+#cookie-consent {
+  display: none;
+  opacity: 0;
+}
+
+/* תמיד מוצג */
+.logo-mobile {
+  display: block;
+  width: 400px;
+  max-width: 90%;
+  margin: 20px auto; /* מרכז במחשב */
+  text-align: center;
+}
+
+.logo-mobile img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+}
+
+/* רספונסיבי לנייד */
+@media screen and (max-width: 768px) {
+  .logo-mobile {
+    width: 90%; /* רוחב מותאם לנייד */
+    margin: 0 auto; /* מרכזיות בסיסית */
+    text-align: center;
+    transform: translateX(0%); /* הזזה קלה ימינה */
+  }
+
+  .logo-mobile img {
+    width: 100%;
+    max-width: 100%;
+  }
+}
