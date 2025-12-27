@@ -476,18 +476,33 @@ header {
   gap: 40px;
 }
 
-/* Card */
+/* =====================
+   CARD – עם זוהר לבן
+===================== */
 .service-card {
   position: relative;
   background: linear-gradient(145deg, #4b0082, #6a0dad);
   padding: 40px 30px;
   border-radius: 28px;
   width: 320px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
   overflow: hidden;
   backdrop-filter: blur(10px);
+
+  /* מסגרת + זוהר לבן */
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.35),
+    0 0 35px rgba(255, 255, 255, 0.2), 0 15px 35px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Hover – חיזוק הזוהר */
+.service-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 0 28px rgba(255, 255, 255, 0.5),
+    0 0 55px rgba(255, 255, 255, 0.3), 0 25px 55px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 /* Glass shine effect */
@@ -509,13 +524,7 @@ header {
   opacity: 1;
 }
 
-.service-card:hover {
-  transform: translateY(-10px) scale(1.03);
-  box-shadow: 0 25px 55px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
-}
-
-/* Glow accent */
+/* Glow accent פנימי */
 .service-card::after {
   content: "";
   position: absolute;
@@ -523,35 +532,120 @@ header {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(138, 43, 226, 0.2), transparent 70%);
-  filter: blur(80px);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.18),
+    transparent 70%
+  );
+  filter: blur(90px);
   z-index: 0;
 }
 
 /* Icon */
 .service-card .icon {
+  position: relative;
+  z-index: 1;
   font-size: 3.5rem;
   margin-bottom: 25px;
   color: #ffffff;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2), 0 6px 15px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 6px 15px rgba(0, 0, 0, 0.5);
 }
 
 /* Title */
 .service-card h3 {
+  position: relative;
+  z-index: 1;
   font-size: 1.7rem;
   margin-bottom: 16px;
   color: #fff;
   font-weight: 900;
   letter-spacing: 0.5px;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5), 0 0 8px rgba(138, 43, 226, 0.6);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5), 0 0 10px rgba(255, 255, 255, 0.35);
 }
 
 /* Text */
 .service-card p {
+  position: relative;
+  z-index: 1;
   font-size: 1.05rem;
   color: #eae6ff;
   line-height: 1.8;
-  text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+/* =====================
+   HAPPY CLIENTS – PREMIUM COUNTER
+===================== */
+.happy-clients {
+  margin-bottom: 60px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 22px 38px;
+  border-radius: 30px;
+  background: linear-gradient(145deg, #3a0a5e, #6a0dad);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+}
+
+/* Glass shine */
+.happy-clients::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.18),
+    transparent 70%
+  );
+  opacity: 0.6;
+}
+
+/* Glow aura */
+.happy-clients::after {
+  content: "";
+  position: absolute;
+  inset: -60%;
+  background: radial-gradient(
+    circle,
+    rgba(180, 90, 255, 0.35),
+    transparent 65%
+  );
+  filter: blur(90px);
+  z-index: 0;
+}
+
+/* Number */
+.clients-number {
+  position: relative;
+  z-index: 1;
+  font-size: 3.8rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #ffffff;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.6),
+    0 0 35px rgba(180, 90, 255, 0.8), 0 8px 25px rgba(0, 0, 0, 0.6);
+}
+
+/* Text */
+.clients-text {
+  position: relative;
+  z-index: 1;
+  margin-top: 6px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #f0dbff;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(180, 90, 255, 0.5), 0 3px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Hover effect */
+.happy-clients:hover {
+  transform: translateY(-6px) scale(1.05);
+  transition: transform 0.35s ease;
 }
 
 /* =====================
@@ -569,17 +663,28 @@ header {
   background: linear-gradient(145deg, #1a0a2f, #3b0f4f);
   padding: 40px 30px;
   border-radius: 25px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
   max-width: 500px;
   width: 100%;
   text-align: center;
   color: #e0d4ff;
+
+  /* מסגרת + זוהר לבן */
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.35),
+    0 0 35px rgba(255, 255, 255, 0.2), 0 15px 40px rgba(0, 0, 0, 0.6);
+
+  transition: box-shadow 0.35s ease;
+}
+
+/* חיזוק הזוהר במעבר עכבר */
+.contact-container:hover {
+  box-shadow: 0 0 28px rgba(255, 255, 255, 0.55),
+    0 0 55px rgba(255, 255, 255, 0.35), 0 20px 50px rgba(0, 0, 0, 0.7);
 }
 
 .contact-container h2 {
   font-size: 2rem;
   margin-bottom: 20px;
-  color: #ffeb3b; /* כותרת בולטת */
   font-weight: bold;
   background: linear-gradient(90deg, #a95fff, #fcfbff);
   -webkit-background-clip: text;
@@ -647,7 +752,6 @@ header {
 }
 
 .contact-container a:hover {
-  color: #fff;
   text-shadow: 0 0 8px rgba(255, 255, 255, 1), 0 0 18px rgba(180, 120, 255, 1),
     0 0 30px rgba(140, 60, 255, 1);
 }
@@ -658,18 +762,26 @@ header {
 .about-section {
   max-width: 800px; /* רוחב מקסימלי */
   margin: 20px auto; /* צמצום margin עליון */
-  background: rgba(255, 255, 255, 0.1); /* רקע שקוף עם גוון */
-  backdrop-filter: blur(10px); /* טשטוש הרקע */
-  border-radius: 20px; /* קצוות מעוגלים */
   padding: 40px 30px; /* רווח פנימי */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* צל קל */
   text-align: center; /* יישור טקסט */
-  scroll-margin-top: 120px; /* מאפשר גלילה יפה מתחת לheader */
+  scroll-margin-top: 120px; /* גלילה מתחת ל-header */
+
+  /* רקע */
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+
+  /* מסגרת לבנה זוהרת */
+  border: 2px solid rgba(255, 255, 255, 0.65);
+  border-radius: 20px;
+
+  /* זוהר פרימיום */
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.35),
+    0 0 35px rgba(255, 255, 255, 0.15), 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .about-section h2 {
   font-size: 2.5rem;
-  color: #fff;
+  color: #ffffff;
   margin-bottom: 20px;
 }
 
@@ -679,12 +791,14 @@ header {
   line-height: 1.7;
 }
 
-/* התאמות למובייל */
+/* =====================
+   MOBILE
+===================== */
 @media (max-width: 768px) {
   .about-section {
     margin: 15px auto;
     padding: 25px 20px;
-    scroll-margin-top: 90px; /* מתאים לניווט במובייל */
+    scroll-margin-top: 90px;
   }
 
   .about-section h2 {
@@ -968,5 +1082,39 @@ body {
   .logo-mobile img {
     width: 100%;
     max-width: 100%;
+  }
+}
+
+/* =====================
+   HERO SUB – SAFE PREMIUM FRAME
+===================== */
+.hero-sub {
+  display: inline-block; /* לא משפיע על layout */
+  padding: 14px 24px;
+  margin-top: 12px;
+  border-radius: 999px;
+
+  background: linear-gradient(#0e0620, #0e0620) padding-box,
+    linear-gradient(135deg, #9b5cff, #4fd1ff, #9b5cff) border-box;
+
+  border: 2px solid transparent;
+
+  color: #f2edff;
+  font-size: 16px;
+  line-height: 1.8;
+  text-align: center;
+
+  box-shadow: 0 0 18px rgba(155, 92, 255, 0.35),
+    0 0 30px rgba(79, 209, 255, 0.2);
+}
+
+/* =====================
+   MOBILE
+===================== */
+@media (max-width: 768px) {
+  .hero-sub {
+    font-size: 14px;
+    padding: 12px 18px;
+    border-radius: 18px;
   }
 }
